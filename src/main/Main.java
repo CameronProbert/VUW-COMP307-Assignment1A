@@ -13,7 +13,7 @@ public class Main {
 
 	/**
 	 * Run the main with 2 arguments, the training and test sets for the iris
-	 * plant I only have this one method as there is not much code.
+	 * plant.
 	 * 
 	 * @param args
 	 */
@@ -30,6 +30,7 @@ public class Main {
 			System.exit(0);
 		}
 
+		// Get a user input k-value
 		System.out.println("\nWhat k value would you like to use?");
 		Scanner in = new Scanner(System.in);
 		int k = in.nextInt();
@@ -157,6 +158,13 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Creates a double array of size num and initialises all values to the Max
+	 * value
+	 * 
+	 * @param num
+	 * @return
+	 */
 	private static double[] createMaxValueArray(int num) {
 		double[] array = new double[num];
 		for (int i = 0; i < num; i++) {
