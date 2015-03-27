@@ -6,9 +6,13 @@ import java.util.Scanner;
 
 public class Main {
 
+	/**
+	 * Run the main with 2 arguments, the training and test sets for the iris
+	 * plant
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		File fileTraining;
-		File fileTesting;
 
 		// First make sure that the arguments are valid
 		try {
@@ -23,8 +27,9 @@ public class Main {
 			System.exit(0);
 		}
 
-		fileTraining = new File(args[0]);
-		fileTesting = new File(args[1]);
+		// Create the files
+		File fileTraining = new File(args[0]);
+		File fileTesting = new File(args[1]);
 
 		// START OF ALGORITHM
 		try {
@@ -34,6 +39,7 @@ public class Main {
 
 			// Loop through the test file
 			while (scanTest.hasNext()) {
+
 				// Read in the next test iris
 				double sepLen = scanTest.nextDouble();
 				double sepWid = scanTest.nextDouble();
@@ -48,6 +54,7 @@ public class Main {
 				Scanner scanTrain = new Scanner(fileTraining);
 				// Loop through the training file for each test iris
 				while (scanTrain.hasNext()) {
+
 					// Find the relative distances between the training set
 					// values and the test set values
 					double sepLenRel = sepLen - scanTrain.nextDouble();
@@ -62,7 +69,10 @@ public class Main {
 					double distance = (sepLenRel * sepLenRel)
 							+ (sepWidRel * sepWidRel) + (petLenRel * petLenRel)
 							+ (petWidRel * petWidRel);
-					if (distance < closestDistance){
+
+					// If this distance is the closest then save the distance
+					// and the type as the new nearest neighbour
+					if (distance < closestDistance) {
 						perceivedType = type;
 						closestDistance = distance;
 					}
@@ -76,10 +86,13 @@ public class Main {
 				numTotal++;
 			}
 			scanTest.close();
+
 			// Print out the percentage that were correct
 			System.out.println("Total number of test cases: " + numTotal);
 			System.out.println("Total number correct: " + numCorrect);
-			System.out.println("Percentage correct: " + (numCorrect*100/numTotal));
+			System.out.println("Percentage correct: "
+					+ (numCorrect * 100 / numTotal));
+
 		} catch (FileNotFoundException e) {
 			System.err.println("File was not found!");
 			e.printStackTrace();
