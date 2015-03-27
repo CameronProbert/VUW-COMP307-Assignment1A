@@ -17,11 +17,6 @@ public class Main {
 						"This program must be given 2 filenames as parameters");
 
 			}
-			if (!args[0].startsWith("-") || !args[1].startsWith("-")) {
-				throw new InvalidArgumentsError(
-						"The parameters must start with '-'");
-
-			}
 		} catch (InvalidArgumentsError e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,6 +77,9 @@ public class Main {
 			}
 			scanTest.close();
 			// Print out the percentage that were correct
+			System.out.println("Total number of test cases: " + numTotal);
+			System.out.println("Total number correct: " + numCorrect);
+			System.out.println("Percentage correct: " + (numCorrect*100/numTotal));
 		} catch (FileNotFoundException e) {
 			System.err.println("File was not found!");
 			e.printStackTrace();
