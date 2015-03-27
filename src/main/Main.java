@@ -30,9 +30,14 @@ public class Main {
 			System.exit(0);
 		}
 
-		System.out.println("\n\nWhat k value would you like to use?");
+		System.out.println("\nWhat k value would you like to use?");
 		Scanner in = new Scanner(System.in);
 		int k = in.nextInt();
+
+		while (k < 1) {
+			System.out.println("\nThe value of k must be greater than 0");
+			k = in.nextInt();
+		}
 
 		// Create the files
 		File fileTraining = new File(args[0]);
@@ -90,24 +95,31 @@ public class Main {
 				}
 				scanTrain.close();
 
-				// Update numbers
+				// Figure out which type was the best classification using k
+				// number
+				int majority = 0;
+				String majorityType = null;
+
+				// Creates a map that records how many times each type occurs
 				Map<String, Integer> typeMap = new HashMap<String, Integer>();
 				for (String type : perceivedTypes) {
+					System.err.println(type);
 					if (typeMap.containsKey(type)) {
 						typeMap.put(type, typeMap.get(type) + 1);
 					} else {
-						typeMap.put(type, 0);
+						typeMap.put(type, 1);
 					}
 				}
+				// Gets the most occurring type
 				Set<Entry<String, Integer>> set = typeMap.entrySet();
-				int majority = 0;
-				String majorityType = null;
 				for (Entry<String, Integer> entry : set) {
 					if (entry.getValue() > majority) {
 						majority = entry.getValue();
 						majorityType = entry.getKey();
 					}
 				}
+
+				// Update numbers
 				if (actualType.equals(majorityType)) {
 					numCorrect++;
 				}
