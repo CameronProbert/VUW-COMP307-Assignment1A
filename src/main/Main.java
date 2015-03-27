@@ -8,7 +8,7 @@ public class Main {
 
 	/**
 	 * Run the main with 2 arguments, the training and test sets for the iris
-	 * plant
+	 * plant I only have this one method as there is not much code.
 	 * 
 	 * @param args
 	 */
