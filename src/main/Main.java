@@ -104,7 +104,6 @@ public class Main {
 				// Creates a map that records how many times each type occurs
 				Map<String, Integer> typeMap = new HashMap<String, Integer>();
 				for (String type : perceivedTypes) {
-					System.err.println(type);
 					if (typeMap.containsKey(type)) {
 						typeMap.put(type, typeMap.get(type) + 1);
 					} else {
@@ -150,8 +149,6 @@ public class Main {
 	 */
 	private static void shuffle(double[] closestDistances,
 			String[] perceivedTypes, int count) {
-		System.out.println("Count: " + count);
-		System.out.println("Length: " + closestDistances.length);
 		for (int index = closestDistances.length - 1; index > count; index--) {
 			closestDistances[index] = closestDistances[index - 1];
 			perceivedTypes[index] = perceivedTypes[index - 1];
