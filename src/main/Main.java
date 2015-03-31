@@ -3,6 +3,7 @@ package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -49,6 +50,7 @@ public class Main {
 			Scanner scanTest = new Scanner(fileTesting);
 			int numTotal = 0;
 			int numCorrect = 0;
+			PrintWriter writer = new PrintWriter("output.txt");
 
 			// Loop through the test file
 			while (scanTest.hasNext()) {
@@ -123,11 +125,23 @@ public class Main {
 				if (actualType.equals(majorityType)) {
 					numCorrect++;
 				}
+				System.out.print("Perceived type =" + majorityType);
+				System.out.println(" || Actual type = " + actualType);
+				writer.print("Perceived type =" + majorityType);
+				writer.println(" || Actual type = " + actualType);
 				numTotal++;
 			}
 			scanTest.close();
 
-			// Print out the percentage that were correct
+			// Print out the percentage that were correct and saves it to
+			// output.txt
+			writer.println("Total number of test cases: " + numTotal);
+			writer.println("Total number correct: " + numCorrect);
+			writer.println("Percentage correct: "
+					+ (numCorrect * 100 / numTotal));
+			writer.close();
+
+			// Print out the percentage that were correct on the console
 			System.out.println("Total number of test cases: " + numTotal);
 			System.out.println("Total number correct: " + numCorrect);
 			System.out.println("Percentage correct: "
